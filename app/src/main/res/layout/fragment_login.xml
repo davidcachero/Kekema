@@ -6,11 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".fragment.LoginFragment">
 
-    <TextView
-        android:id="@+id/textview_first"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_first_fragment"
-        android:gravity="center"/>
+        android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/ic_person" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/username"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="25sp"/>
+
+        <EditText
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_username"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:hint="@string/usernameHint"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/password"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="25sp"/>
+
+        <EditText
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_password"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="@string/toRegister"
+            android:textAlignment="center"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_right"
+            android:layout_marginTop="0dp"/>
+    </LinearLayout>
 </FrameLayout>
