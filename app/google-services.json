@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "805085745737",
+    "project_id": "kekema-492cc",
+    "storage_bucket": "kekema-492cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805085745737:android:7046d5b1624fe8e2bf6598",
+        "android_client_info": {
+          "package_name": "com.example.kekema"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805085745737-efq42jouofgffms1k1bo6681vqc7ro0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaj7MzS6Ctd77YnfXmEh_RrcXcSuqiL2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805085745737-efq42jouofgffms1k1bo6681vqc7ro0r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
