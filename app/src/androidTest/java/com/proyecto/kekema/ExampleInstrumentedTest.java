@@ -1,4 +1,4 @@
-package com.example.kekema;
+package com.proyecto.kekema;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.kekema", appContext.getPackageName());
+        assertEquals("com.proyecto.kekema", appContext.getPackageName());
     }
 }

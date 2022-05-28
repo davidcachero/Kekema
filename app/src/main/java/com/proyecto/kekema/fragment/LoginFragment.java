@@ -1,26 +1,19 @@
-package com.example.kekema.fragment;
+package com.proyecto.kekema.fragment;
 
-import static android.content.ContentValues.TAG;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.kekema.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.proyecto.kekema.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.proyecto.kekema.activity.RecipeActivity;
 
 public class LoginFragment extends Fragment {
     private View view;
@@ -36,6 +29,9 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getContext(), RecipeActivity.class);
+                startActivity(intent);
+                getActivity().finish(); // Destroy activity so you have to close de application to get to it again
                 // To use when firebase database is implemented
                 /*if(currentUser != null){
                     currentUser.reload();

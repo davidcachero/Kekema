@@ -1,12 +1,12 @@
-package com.example.kekema.activity;
+package com.proyecto.kekema.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.kekema.R;
-import com.example.kekema.adapter.SectionsPagerAdapter;
+import com.proyecto.kekema.R;
+import com.proyecto.kekema.adapter.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
