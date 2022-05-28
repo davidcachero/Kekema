@@ -44,7 +44,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private void createUser(String user, String password) {
-        Toast.makeText(getContext(), "Created", Toast.LENGTH_LONG);
+        Toast.makeText(getContext(), "Created", Toast.LENGTH_LONG).show();
         /*auth.createUserWithEmailAndPassword(user, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

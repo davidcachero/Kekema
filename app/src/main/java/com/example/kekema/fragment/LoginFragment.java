@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,16 +32,18 @@ public class LoginFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_login, container, false);
         auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        if(currentUser != null){
-            /*String name = currentUser.getDisplayName();
-            String email = currentUser.getEmail();
-            boolean emailVerified = currentUser.isEmailVerified();
-
-            String uid = currentUser.getUid();*/
-            currentUser.reload();
-        }else{
-            Toast.makeText(getContext(), R.string.incorrectLogin, Toast.LENGTH_SHORT);
-        }
+        Button loginButton = view.findViewById(R.id.login_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // To use when firebase database is implemented
+                /*if(currentUser != null){
+                    currentUser.reload();
+                }else{
+                    Toast.makeText(getContext(), R.string.incorrectLogin, Toast.LENGTH_SHORT).show();
+                }*/
+            }
+        });
         return view;
     }
 }
