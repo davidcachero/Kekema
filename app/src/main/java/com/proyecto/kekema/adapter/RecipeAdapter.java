@@ -3,6 +3,8 @@ package com.proyecto.kekema.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +21,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
         public TextView textDescription;
+        public ImageView image;
 
         public RecipeViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             textDescription = itemView.findViewById(R.id.text_view_recipe_description);
+            image = itemView.findViewById(R.id.image_recipe);
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
@@ -53,7 +57,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
         Recipe currentItem = recipeList.get(position);
-        holder.textDescription.setText(currentItem.getDescription());
+        holder.textDescription.setText(currentItem.getName());
+        holder.image.setImageResource(currentItem.getImage());
     }
 
     @Override

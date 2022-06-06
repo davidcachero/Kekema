@@ -1,11 +1,18 @@
 package com.proyecto.kekema.model;
 
 public class Recipe {
-    // Add picture
+    private String name;
     private String description;
+    private int image;
 
     public Recipe(String description) {
         this. description = description;
+    }
+
+    public Recipe(String name, String description, int image) {
+        this.name = name;
+        this. description = description;
+        this.image = image;
     }
 
     public String getDescription() {
@@ -14,5 +21,21 @@ public class Recipe {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 }

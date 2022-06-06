@@ -11,19 +11,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageButton
-            android:layout_width="100dp"
+        <ImageView
+            android:id="@+id/image_recipe"
+            android:contentDescription="@string/app_name"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@drawable/ic_library_books"/>
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/text_view_recipe_description"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Example text"
             android:textAlignment="center"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:layout_gravity="bottom"
+            android:gravity="center"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
