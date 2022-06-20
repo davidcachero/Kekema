@@ -8,73 +8,66 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/ic_person" />
+        android:orientation="vertical"
+        android:background="@drawable/pantalla_login">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="300dp"
             android:text="@string/username"
-            android:textStyle="bold"
             android:textAlignment="center"
-            android:textSize="25sp"/>
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/edit_text_username"
-            android:layout_width="380dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
             android:hint="@string/usernameHint"
             android:inputType="textEmailAddress"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:text="@string/password"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:textSize="25sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/edit_text_password"
-            android:layout_width="380dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
 
         <Button
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:id="@+id/login_button"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
             android:layout_gravity="center_horizontal"
-            android:background="@android:color/holo_orange_light"
-            android:text="@string/login"/>
+            android:background="@drawable/button_rounded_corner"
+            android:text="@string/login" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="60dp"
             android:text="@string/toRegister"
             android:textAlignment="center"
             android:textSize="20sp"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_arrow_right"/>
     </LinearLayout>
 </FrameLayout>

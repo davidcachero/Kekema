@@ -14,6 +14,7 @@
     <string name="passwordRepeat">Repeat password</string>
     <string name="usernameHint">Email</string>
     <string name="toRegister">Swipe right to register</string>
+    <string name="toLogin">Swipe left to login</string>
     <string name="incorrectLogin">Incorrect user or password</string>
     <string name="email">Email</string>
 </resources>
