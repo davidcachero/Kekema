@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="140dp"
-    android:layout_height="180dp">
+    android:layout_height="180dp"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/image"

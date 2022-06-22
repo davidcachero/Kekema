@@ -3,7 +3,6 @@ package com.proyecto.kekema.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,21 +17,24 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
     private ArrayList<Recipe> recipeList;
     private OnItemClickListener mListener;
+    private int cont;
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
         public TextView textDescription;
         public ImageView image;
+        public ImageView fav;
 
         public RecipeViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             textDescription = itemView.findViewById(R.id.text_view_recipe_description);
             image = itemView.findViewById(R.id.image_recipe);
-            itemView.setOnClickListener(new View.OnClickListener(){
+            fav = itemView.findViewById(R.id.fav_recipe);
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(listener != null){
+                    if (listener != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             listener.onItemClick(position);
                         }
                     }
@@ -59,6 +61,21 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         Recipe currentItem = recipeList.get(position);
         holder.textDescription.setText(currentItem.getName());
         holder.image.setImageResource(currentItem.getImage());
+        holder.fav.setImageResource(currentItem.getFav());
+        holder.fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.fav.setImageResource(R.drawable.corazon_fav_lleno);
+                /*if(cont == 0){
+                    holder.fav.setImageResource(R.drawable.corazon_fav_lleno);
+                    cont++;
+                }*/
+                /*if(cont == 1){
+                    holder.fav.setImageResource(R.drawable.corazon_fav_vacio);
+                    cont = 0;
+                }*/
+            }
+        });
     }
 
     @Override

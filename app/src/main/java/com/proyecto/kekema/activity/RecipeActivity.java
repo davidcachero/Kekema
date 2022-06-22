@@ -15,6 +15,7 @@ import com.proyecto.kekema.model.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
@@ -32,15 +33,19 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
         recyclerView = findViewById(R.id.recipe_recycler_view);
+        carouselRecipes = new ArrayList<Recipe>();
         coverFlow = (FeatureCoverFlow) findViewById(R.id.recipe_carousel_coverflow);
         recipes = new ArrayList<Recipe>();
-        recipes.add(new Recipe("Pollito con arroz", "Descrpción", R.drawable.pollo_con_arroz));
-        recipes.add(new Recipe("Albóndigas con tomate", "Descrpción", R.drawable.albondigas_tomate));
-        recipes.add(new Recipe("Ensalada de lentejas", "Descrpción", R.drawable.ensalada_lentejas));
-        recipes.add(new Recipe("Pasta carbonara", "Descrpción", R.drawable.pasta_carbonara));
-        recipes.add(new Recipe("Conejo en salsa", "Descrpción", R.drawable.conejo_salsa));
+        recipes.add(new Recipe("Pollito con arroz", "Descripción", R.drawable.pollo_con_arroz, R.drawable.corazon_fav_lleno));
+        recipes.add(new Recipe("Albóndigas con tomate", "Descripción", R.drawable.albondigas_tomate, R.drawable.corazon_fav_vacio));
+        recipes.add(new Recipe("Ensalada de lentejas", "Descripción", R.drawable.ensalada_lentejas, R.drawable.corazon_fav_vacio));
+        recipes.add(new Recipe("Pasta carbonara", "Descripción", R.drawable.pasta_carbonara, R.drawable.corazon_fav_lleno));
+        recipes.add(new Recipe("Conejo en salsa", "Descripción", R.drawable.conejo_salsa, R.drawable.corazon_fav_vacio));
         buildRecyclerRecipes();
-        dummyData();
+        List<Recipe> favRecipes = recipes.stream().filter(fav -> fav.getFav() == R.drawable.corazon_fav_lleno).collect(Collectors.toList());
+        if (!favRecipes.isEmpty()) {
+            carouselRecipes.addAll(favRecipes);
+        }
         buildRecyclerCarousel();
     }
 
@@ -59,25 +64,25 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void dummyData() {
-        carouselRecipes = new ArrayList<Recipe>();
-        carouselRecipes.add(new Recipe("Pollito con arroz", "Descrpción", R.drawable.pollo_con_arroz));
-        carouselRecipes.add(new Recipe("Albóndigas con tomate", "Descrpción", R.drawable.albondigas_tomate));
+        //carouselRecipes.add(new Recipe("Pollito con arroz", "Descripción", R.drawable.pollo_con_arroz, R.drawable.corazon_fav_vacio));
+        /*carouselRecipes.add(new Recipe("Albóndigas con tomate", "Descrpción", R.drawable.albondigas_tomate));
         carouselRecipes.add(new Recipe("Ensalada de lentejas", "Descrpción", R.drawable.ensalada_lentejas));
         carouselRecipes.add(new Recipe("Pasta carbonara", "Descrpción", R.drawable.pasta_carbonara));
-        carouselRecipes.add(new Recipe("Conejo en salsa", "Descrpción", R.drawable.conejo_salsa));
+        carouselRecipes.add(new Recipe("Conejo en salsa", "Descrpción", R.drawable.conejo_salsa));*/
     }
 
     private void buildRecyclerCarousel(){
         carouselAdapter = new CarouselRecipeAdapter(this, (ArrayList<Recipe>) carouselRecipes);
         coverFlow.setAdapter(carouselAdapter);
         coverFlow.setOnScrollPositionListener(onScrollListener());
+        //coverFlow.setVisibility(View.INVISIBLE);
     }
 
     private FeatureCoverFlow.OnScrollPositionListener onScrollListener() {
         return new FeatureCoverFlow.OnScrollPositionListener() {
             @Override
             public void onScrolledToPosition(int position) {
-                Log.v("RecipeActiivty", "position: " + position);
+                Log.v("RecipeActivity", "position: " + position);
             }
 
             @Override
