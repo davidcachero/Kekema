@@ -19,7 +19,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.proyecto.kekema.R;
 
 public class RegisterFragment extends Fragment {
@@ -73,10 +72,8 @@ public class RegisterFragment extends Fragment {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = auth.getCurrentUser();
-                            /*getActivity().getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.tab_layout, new LoginFragment())
-                                    .commit();*/
+                            Toast.makeText(getContext(), "Authentication succeed.",
+                                    Toast.LENGTH_SHORT).show();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
