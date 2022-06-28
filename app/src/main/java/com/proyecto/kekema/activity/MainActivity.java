@@ -1,14 +1,14 @@
-package com.example.kekema.activity;
+package com.proyecto.kekema.activity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.kekema.R;
-import com.example.kekema.adapter.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import com.proyecto.kekema.R;
+import com.proyecto.kekema.adapter.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         sectionsPagerAdapter = new SectionsPagerAdapter(this);
 
         viewPager.setAdapter(sectionsPagerAdapter);
-
-        new TabLayoutMediator(tabLayout, viewPager,((tab, position) -> tab.setText(tabTitles[position]))).attach();
+        tabLayout.setVisibility(View.GONE);
+        //new TabLayoutMediator(tabLayout, viewPager,((tab, position) -> tab.setText(tabTitles[position]))).attach();
     }
 }

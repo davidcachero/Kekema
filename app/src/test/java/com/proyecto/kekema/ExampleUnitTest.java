@@ -1,4 +1,4 @@
-package com.example.kekema;
+package com.proyecto.kekema;
 
 import org.junit.Test;
 
