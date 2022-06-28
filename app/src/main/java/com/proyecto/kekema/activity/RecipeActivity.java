@@ -1,13 +1,17 @@
 package com.proyecto.kekema.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.proyecto.kekema.R;
 import com.proyecto.kekema.adapter.CarouselRecipeAdapter;
 import com.proyecto.kekema.adapter.RecipeAdapter;
@@ -27,6 +31,12 @@ public class RecipeActivity extends AppCompatActivity {
     private FeatureCoverFlow coverFlow;
     private CarouselRecipeAdapter carouselAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private String idVideo;
+    private String recipeName;
+    private String description;
+    private String elaboration;
+    private ArrayList<String> ingredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +46,8 @@ public class RecipeActivity extends AppCompatActivity {
         carouselRecipes = new ArrayList<Recipe>();
         coverFlow = (FeatureCoverFlow) findViewById(R.id.recipe_carousel_coverflow);
         recipes = new ArrayList<Recipe>();
-        recipes.add(new Recipe("Pollito con arroz", "Descripción", R.drawable.pollo_con_arroz, R.drawable.corazon_fav_lleno));
-        recipes.add(new Recipe("Albóndigas con tomate", "Descripción", R.drawable.albondigas_tomate, R.drawable.corazon_fav_vacio));
-        recipes.add(new Recipe("Ensalada de lentejas", "Descripción", R.drawable.ensalada_lentejas, R.drawable.corazon_fav_vacio));
-        recipes.add(new Recipe("Pasta carbonara", "Descripción", R.drawable.pasta_carbonara, R.drawable.corazon_fav_lleno));
-        recipes.add(new Recipe("Conejo en salsa", "Descripción", R.drawable.conejo_salsa, R.drawable.corazon_fav_vacio));
+        ingredients = new ArrayList<>();
+        getRecipesFromDataBase();
         buildRecyclerRecipes();
         List<Recipe> favRecipes = recipes.stream().filter(fav -> fav.getFav() == R.drawable.corazon_fav_lleno).collect(Collectors.toList());
         if (!favRecipes.isEmpty()) {
@@ -49,7 +56,23 @@ public class RecipeActivity extends AppCompatActivity {
         buildRecyclerCarousel();
     }
 
-    private void buildRecyclerRecipes(){
+    private List<Recipe> getRecipesFromDataBase() {
+        db.collection("recetas").document("arroz-con-pollo").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                idVideo = documentSnapshot.get("idVideo").toString();
+                recipeName = documentSnapshot.get("nombre").toString();
+                description = "Hoy os explicamos cómo hacer arroz con pollo, un plato muy sencillo y económico con pocos ingredientes, que va a triunfar en vuestra casa.";
+                elaboration = "1. Salteamos el pollo." + "\n" + "2. Incorporamos el arroz" + "\n" + "3. Cocinamos a fuego lento durante 18 minutos";
+                ingredients.add("Pollo troceado");
+                ingredients.add("Ajo");
+            }
+        });
+        recipes.add(new Recipe(recipeName, description, elaboration, ingredients, R.drawable.pollo_con_arroz, R.drawable.corazon_fav_lleno, idVideo));
+        return recipes;
+    }
+
+    private void buildRecyclerRecipes() {
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
@@ -58,24 +81,15 @@ public class RecipeActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new RecipeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(RecipeActivity.this, recipes.get(position).getDescription(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(RecipeActivity.this, RecipeDescriptionActivity.class).putParcelableArrayListExtra("recipe", (ArrayList<? extends Parcelable>) recipes));
             }
         });
-    }
-
-    private void dummyData() {
-        //carouselRecipes.add(new Recipe("Pollito con arroz", "Descripción", R.drawable.pollo_con_arroz, R.drawable.corazon_fav_vacio));
-        /*carouselRecipes.add(new Recipe("Albóndigas con tomate", "Descrpción", R.drawable.albondigas_tomate));
-        carouselRecipes.add(new Recipe("Ensalada de lentejas", "Descrpción", R.drawable.ensalada_lentejas));
-        carouselRecipes.add(new Recipe("Pasta carbonara", "Descrpción", R.drawable.pasta_carbonara));
-        carouselRecipes.add(new Recipe("Conejo en salsa", "Descrpción", R.drawable.conejo_salsa));*/
     }
 
     private void buildRecyclerCarousel(){
         carouselAdapter = new CarouselRecipeAdapter(this, (ArrayList<Recipe>) carouselRecipes);
         coverFlow.setAdapter(carouselAdapter);
         coverFlow.setOnScrollPositionListener(onScrollListener());
-        //coverFlow.setVisibility(View.INVISIBLE);
     }
 
     private FeatureCoverFlow.OnScrollPositionListener onScrollListener() {

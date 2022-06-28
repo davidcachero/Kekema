@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
     private ArrayList<Recipe> recipeList;
     private OnItemClickListener mListener;
-    private int cont;
+    private int cont = 0;
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
         public TextView textDescription;
@@ -65,15 +65,16 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.fav.setImageResource(R.drawable.corazon_fav_lleno);
-                /*if(cont == 0){
-                    holder.fav.setImageResource(R.drawable.corazon_fav_lleno);
+                System.out.println(holder.fav.getDrawable().getCurrent());
+                //holder.fav.setImageResource(R.drawable.corazon_fav_lleno);
+                if (cont == 0) {
                     cont++;
-                }*/
-                /*if(cont == 1){
+                    holder.fav.setImageResource(R.drawable.corazon_fav_lleno);
+                }
+                if (cont == 1) {
+                    cont--;
                     holder.fav.setImageResource(R.drawable.corazon_fav_vacio);
-                    cont = 0;
-                }*/
+                }
             }
         });
     }
